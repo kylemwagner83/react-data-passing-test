@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Child from './Child'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class Parent extends React.Component{	
+	state = {
+		msg: "",
+	}
+
+	handleCallback = (childData) =>{
+		this.setState({msg: childData})
+	}
+
+	render() {
+		const {msg} = this.state;
+		return(
+		<div>
+			<Child parentCallback = {this.handleCallback}/>	
+			<h1> {msg}</h1>
+		</div>
+		);
+	}
 }
 
-export default App;
+export default Parent;
